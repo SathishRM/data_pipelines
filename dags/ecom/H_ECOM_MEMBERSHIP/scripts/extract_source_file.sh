@@ -3,6 +3,7 @@
 if [[ $# -ne 7 ]]
 then
   echo "Please pass the required parameters"
+  echo "Usage $(basename $0) <year> <month> <day> <hour> <temp_base_dir> <raw_base_dir> <source_dir> <source_file_name>"
   exit 1
 fi
 
@@ -20,12 +21,12 @@ retry=5
 # Clean the working directory
 temp_dir="$temp_base_dir/ecom/H_ECOM_MEMBERSHIP/$year/$month/$day/$hour"
 rm -rf $temp_dir
-mkdir $temp_dir
+mkdir -p $temp_dir
 
 # Path to copy the source file into the DataLake
 raw_dir="$raw_base_dir/ecom/H_ECOM_MEMBERSHIP/$year/$month/$day/$hour/"
 
-#Check if the file is available
+#Check if the file is available and wiat for 5 minutes before exit
 source_file="$source_dir/$file"
 cur=1
 while [ $cur -le $retry]
@@ -48,6 +49,9 @@ fi
 
 echo "copy the source file to path $raw_dir"
 aws s3 sync $source_dir $raw_dir --delete
+
+echo "download the file to local filesystem"
+aws s3 sync $raw_dir $temp_dir
 
 
 
