@@ -1,7 +1,6 @@
 import re
 from datetime import datetime
 from dateutil import relativedelta
-from math import ceil
 
 
 class Validate:
@@ -20,7 +19,6 @@ class Validate:
         constructor of the validate class with optional parameters
         :param no_digits: no of digits in mobile
         :param mobile: mobile# to be validated
-        :return: boolean value
         """
         self.min_age = min_age
         self.mobile_pattern = re.compile(f'^\d{{{mobile_digits}}}$')
