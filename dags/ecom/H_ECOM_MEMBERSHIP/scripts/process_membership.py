@@ -1,6 +1,7 @@
 import csv
 import os
 import shutil
+import sys
 from typing import Generator
 from datetime import datetime
 import json
@@ -70,7 +71,7 @@ def process_data(data: dict) -> dict:
         else:
             # file is opened in append mode due to stream processing instead of loading full file into memory
             print("Either one or more validations are failed, writing into non-membership file ")
-            with open(non_member_file, 'a') as nonmember_file:
+            with open(non_success_file, 'a') as nonmember_file:
                 nonmember_writer = csv.writer(nonmember_file, dialect='unix', lineterminator='\n')
                 nonmember_writer.writerow([name, dob, mobile, email])
     except Exception as error:
@@ -80,15 +81,18 @@ def process_data(data: dict) -> dict:
         print("Files are written successfully")
 
 if __name__ == '__main__':
+    # receive the parameters passed to the script
+    CONST_DATE_FORMAT = sys.argv[1]
+    DOB_OUTPUT_FORMAT = sys.argv[2]
+    HASH_CODE_LENGTH = sys.argv[3]
+    output_dir = sys.argv[4]
+    success_file= output_dir + '\\' + sys.argv[5]
+    non_success_file= output_dir + '\\' + sys.argv[6]
+    source_file = sys.argv[7]
+
+    # instantiate the required classes from the utils package
     validate = Validate()
     hash_gen = Hash()
-    CONST_DATE_FORMAT = '%Y-%m-%d'
-    DOB_OUTPUT_FORMAT = '%Y%m%d'
-    HASH_CODE_LENGTH = 5
-    output_dir = 'E:\\Python\\github\\data_pipelines\\data\\processed\\'
-    success_file='E:\\Python\\github\\data_pipelines\\data\\processed\\success_membership.csv'
-    non_member_file= 'E:\\Python\\github\\data_pipelines\\data\\processed\\unsuccess_membership.csv'
-    source_file = 'E:\\Python\\github\\data_pipelines\\data\\input\\membership.json'
 
     # clean the output files if exists already
     clean_output_directory()

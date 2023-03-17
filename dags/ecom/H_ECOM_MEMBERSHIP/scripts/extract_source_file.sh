@@ -19,7 +19,7 @@ file=$8
 retry=5
 
 # Clean the working directory
-temp_dir="$temp_base_dir/ecom/H_ECOM_MEMBERSHIP/$year/$month/$day/$hour"
+temp_dir="$temp_base_dir/ecom/H_ECOM_MEMBERSHIP/extract_source_file/$year/$month/$day/$hour"
 rm -rf $temp_dir
 mkdir -p $temp_dir
 
