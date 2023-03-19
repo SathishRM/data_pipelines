@@ -30,3 +30,5 @@ It contains 3 tasks
     `generated_membership_id, first_name, last_name, dob in YYYYmmdd, customoer_mobile_no, customer_email `
 2. failed application `non_membership.csv` -> `name, dob in YYYY-mm-dd, customer_mobile_no, customer_email`
 3. processed file location -> `s3://data-ingestion/enriched/ecom/H_ECOM_MEMBERSHIP/process_membership/<year>/<month>/<day>/<hour>/`
+
+**Please check the directory data for the sample files**
