@@ -13,7 +13,7 @@ It contains 3 tasks
   - Successful applications are captured in the CSV files `membership.csv` and the failed applications are captured in a separated file `non_membership.csv` 
 - Uploads the processed data into DataLake S3 path
 
-#####List of variables to be declared in the airflow
+##### List of variables to be declared in the airflow
 1. SCRIPT_BASE_DIR - Script home path in the airflow nodes `/apps/data-ingestio/scripts/`
 2. TEMP_BASE_DIR - Working directory home path in the airflow nodes `/data/data-ingestion/`
 3. RAW_BASE_DIR - S3 home path of the Data Lake raw layer `s3://data-ingestion/raw/`
@@ -22,10 +22,10 @@ It contains 3 tasks
 6. OUTPUT_BASE_DIR - S3 home path of the Data Lake enriched layer `s3://data-ingestion/enriched`
 7. PYTHON_VENV - Python virtual env base path in the airflow nodes `/apps/data-ingestion/airflow/venv`
 
-#####Source JSON file format 
+##### Source JSON file format 
 `{"name" : "last_name first_name", "dob": "customer_dob_in_YYYY-mm-dd", "mobile": "customer_mobile_no",  "email" : "customer_email_address"}`
 
-#####Processed file formats
+##### Processed file formats
 1. successful application `membership.csv` -> 
     `generated_membership_id, first_name, last_name, dob in YYYYmmdd, customoer_mobile_no, customer_email `
 2. failed application `non_membership.csv` -> `name, dob in YYYY-mm-dd, customer_mobile_no, customer_email`
